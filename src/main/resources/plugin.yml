@@ -1,0 +1,4 @@
+name: Warning
+version: '${version}'
+main: io.leeple.warning.Warning
+api-version: '1.20'
