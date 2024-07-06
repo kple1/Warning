@@ -8,9 +8,13 @@ import java.sql.Statement;
 import java.time.LocalDateTime;
 import org.bukkit.entity.Player;
 
-public class CRUD {
+import static io.leeple.warning.DataBase.DbSetting.DB_NAME;
+import static io.leeple.warning.DataBase.DbSetting.statement;
+
+public class  CRUD {
 
     public static void insertWarning(String column, String player, int count, String reason, int result) throws SQLException {
+        statement.execute("use " + DB_NAME);
         String query = "INSERT INTO warning (player, " + column + ", reason, result, time) VALUES (?, ?, ?, ?, ?)";
         PreparedStatement pstmt = DbSetting.connection.prepareStatement(query);
         pstmt.setString(1, player);
@@ -25,6 +29,7 @@ public class CRUD {
         int warningCount = 0;
 
         try {
+            statement.execute("use " + DB_NAME);
             Statement statement = DbSetting.connection.createStatement();
             String query = "SELECT result FROM warning WHERE player='" + player.getName() + "' ORDER BY time DESC LIMIT 1";
             ResultSet resultSet = statement.executeQuery(query);

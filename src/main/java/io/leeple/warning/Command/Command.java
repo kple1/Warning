@@ -7,6 +7,7 @@ package io.leeple.warning.Command;
 
 import io.leeple.warning.Ban.BanPlayer;
 import io.leeple.warning.DataBase.CRUD;
+import io.leeple.warning.DataBase.DbSetting;
 import io.leeple.warning.File.Config;
 import io.leeple.warning.File.GetPlayerData;
 import io.leeple.warning.Utils.Color;
@@ -78,6 +79,10 @@ public class Command implements CommandExecutor, TabExecutor {
                             player.sendMessage(warningPrefix + strings[2] + "만큼 경고를 삭감했습니다.");
                         }
                     }
+
+                    if (strings[0].equals("reloadDB")) {
+                        DbSetting.start();
+                    }
                 } catch (SQLException var9) {
                     var10001 = warningPrefix;
                     player.sendMessage(var10001 + sqlErrorPrefix + var9.getMessage() + " From Command Class");
@@ -108,17 +113,17 @@ public class Command implements CommandExecutor, TabExecutor {
                 }
 
                 if (strings.length == 2) {
-                    tabList.add("[<Player>]");
+                    tabList.add("[Player]");
                     return (List)StringUtil.copyPartialMatches(strings[1], tabList, new ArrayList());
                 }
 
                 if (strings.length == 3) {
-                    tabList.add("[<D/Count>]");
+                    tabList.add("[D/Count]");
                     return (List)StringUtil.copyPartialMatches(strings[2], tabList, new ArrayList());
                 }
 
                 if (strings.length == 4) {
-                    tabList.add("[<Reason>]");
+                    tabList.add("[Reason]");
                 }
             }
 

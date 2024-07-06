@@ -17,7 +17,6 @@ public class Config {
         } catch (IOException var1) {
             var1.printStackTrace();
         }
-
     }
 
     public static void saveWarningData(String player, int count, String reason, boolean cd) {
